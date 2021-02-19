@@ -5,12 +5,13 @@ code?
 '''
 from cameraController import takePicture
 from sysVariable import NEWFACE
-
 import time 
 from time import sleep
 from picamera import PiCamera
+import click
 
-
+@click.command()
+@click.argument('name', type=click.STRING)
 def addUser(name):
     camera = PiCamera()
     camera.start_preview()

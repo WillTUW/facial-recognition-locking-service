@@ -12,6 +12,7 @@ import time
 import argparse
 import json
 import os
+import click
 from picamera import PiCamera
 from time import sleep
 from sysVariable import IMGPATH
@@ -20,7 +21,7 @@ from cameraController import takePicture
 from faceDetection import faceDetection
 
 
-
+@click.command()
 def deviceClientOn():
     camera = PiCamera()
     camera.start_preview()
@@ -30,24 +31,6 @@ def deviceClientOn():
         sleep(10)
         if faceDetection(IMGPATH): 
             # Transmit the image to our aws iot core
-    
-
-
-
-
-
-
-
-
-
-deviceClientOn()
-
-
-
-
-
-
-    
-
-    
-
+            print('mqtt')
+        else:
+            sleep(10)
