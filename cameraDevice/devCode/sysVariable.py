@@ -1,11 +1,11 @@
-IMGPATH = '/home/pi/CSS532/safe-face-main/cameraDevice/face_storing/face.jpg'
-FACE_DETECTION_MODULE = '/home/pi/Desktop/haarcascade_frontalface_default.xml'
-NEWFACE = '/home/pi/CSS532/safe-face-main/cameraDevice/face_storing/newFace.jpg'
-DEVICENAME = 'cameraDeice'
+IMGPATH = ''
+FACE_DETECTION_MODULE = ''
+NEWFACE = ''
 ROOTCAPATH = ''
 PRIVATEKEYPATH = ''
 CERTIFICATEPATH = ''
 HOST = ''
-
-
+DEVICENAME = ''
+FACE_COLLECTION_ID = ''
+COLLECTION_CREATED = '1'
 

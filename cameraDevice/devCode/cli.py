@@ -5,6 +5,8 @@ import click
 from addUserKeys import addUser
 from cameraController import takePicture
 from deviceThing import deviceClientOn
+from initializeClient import createFaceCollection
+from sysVariable import COLLECTION_CREATED
 
 @click.group()
 def cli():
@@ -17,6 +19,7 @@ def main():
     logging.basicConfig(level=logging.INFO, format=log_fmt)
     cli.add_command(addUser)
     cli.add_command(deviceClientOn)
+    cli.add_command(createFaceCollection)
     cli()
 
 if __name__ == "__main__":
