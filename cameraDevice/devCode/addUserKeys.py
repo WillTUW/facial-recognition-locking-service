@@ -42,7 +42,14 @@ def addUser(name):
         # We need to encode the image to be in a byte format for MQTT
         data = base64.b64encode(img)
         # Send to cloud
-        client.publish(topic, json.dumps(data.decode('utf-8')), 1)
+        message = {
+            "name": name,
+            "device ID": "Door1",
+            "image": data.decode('utf-8') 
+        }
+
+        client.publish(topic, json.dumps(message), 1)
+        # client.publish(topic, json.dumps(data.decode('utf-8')), 1)
 
     else:
         print("No face found :(")
