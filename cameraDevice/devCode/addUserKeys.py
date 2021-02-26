@@ -49,7 +49,6 @@ def addUser(name):
         }
 
         client.publish(topic, json.dumps(message), 1)
-        # client.publish(topic, json.dumps(data.decode('utf-8')), 1)
 
     else:
         print("No face found :(")
