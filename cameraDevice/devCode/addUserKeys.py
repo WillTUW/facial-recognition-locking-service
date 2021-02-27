@@ -65,14 +65,13 @@ def addUser(name):
     for x in range(3):
         print(x + 1)
         sleep(1)
-    # takePicture(camera, NEWFACE)
+    takePicture(camera, NEWFACE)
 
     # If there is a face then
     # send message to iot for processing and storign
     # inside of the Collection
     if faceDetection(NEWFACE):
         client = makeClient()
-        #data = {}
         with open(NEWFACE, 'rb') as file:
             img = file.read()
 
@@ -84,7 +83,7 @@ def addUser(name):
             "device ID": "Door1",
             "image": data.decode('utf-8') 
         }
-        # client.publish(topic, json.dumps(message), 1)
+        client.publish(topic, json.dumps(message), 1)
         
         # Write the user to file
         with open(PATH_TO_USERS) as userList:
@@ -139,7 +138,7 @@ def addAdmin(name, phonenumber, email):
         sleep(1)
     
     # Take pcitrue of the user
-    # takePicture(camera, NEWFACE)
+    takePicture(camera, NEWFACE)
 
     # If the image is clear and the face detected
     if(faceDetection(NEWFACE)):
@@ -164,7 +163,7 @@ def addAdmin(name, phonenumber, email):
         }
         
         # Dump the message and publish to topic
-        # client.publish(topic, json.dumps(message), 1)
+        client.publish(topic, json.dumps(message), 1)
 
         # Open up our local JSON storage
         with open(PATH_TO_USERS) as userList:

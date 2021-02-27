@@ -1,3 +1,7 @@
+""" System Varaibes to be used with non test
+
+
+"""
 IMGPATH = ''
 FACE_DETECTION_MODULE = ''
 NEWFACE = ''
@@ -7,5 +11,6 @@ CERTIFICATEPATH = ''
 HOST = ''
 DEVICENAME = ''
 FACE_COLLECTION_ID = ''
-COLLECTION_CREATED = '1'
+COLLECTION_CREATED = ''
+PATH_TO_USERS = ' .json'
 

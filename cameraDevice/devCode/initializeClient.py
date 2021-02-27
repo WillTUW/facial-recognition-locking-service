@@ -1,10 +1,21 @@
+""" Initilizes a client and collection
+
+makeClient  : creates and returns the MQTT client
+
+setup       : creates a face collection. Only run once
+"""
 from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
 from sysVariable import DEVICENAME, ROOTCAPATH, PRIVATEKEYPATH, CERTIFICATEPATH, HOST, FACE_COLLECTION_ID, COLLECTION_CREATED
 import time
 import click
 
-
 def makeClient():
+    """Creates a client for MQTT
+
+    Clients are made here to reduce the amount of repeatable code
+    Returns:
+        [MQTT.client]: AWS MQTT Client 
+    """
     mqttClient = None
     mqttClient = AWSIoTMQTTClient(DEVICENAME)
     port = 8883
@@ -16,9 +27,16 @@ def makeClient():
     return mqttClient
 
 # Should only be ran once per device ... 
+@click.argument('idForCollection', type=click.STRING)
 @click.command()
-def createFaceCollection():
+def setup(idForCollection=FACE_COLLECTION_ID):
+    """Is ran a single time per lockable device.
+
+    Args:
+        idForCollection ([string], optional): String name for collection. Defaults to FACE_COLLECTION_ID.
+    """
     client = makeClient()
-    client.publish('createFaceCollection', FACE_COLLECTION_ID, 1)
-    print("Face Collection Created With ID: " + FACE_COLLECTION_ID)
+    client.publish('createFaceCollection', idForCollection, 1)
+    print("Face Collection Created With ID: " + idForCollection)
+    client.disconnect()
     
