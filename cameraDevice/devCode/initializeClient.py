@@ -27,9 +27,7 @@ def makeClient():
     return mqttClient
 
 # Should only be ran once per device ... 
-@click.argument('idForCollection', type=click.STRING)
-@click.command()
-def setup(idForCollection=FACE_COLLECTION_ID):
+def faceCollectionSetup(idForCollection=FACE_COLLECTION_ID):
     """Is ran a single time per lockable device.
 
     Args:

@@ -11,8 +11,8 @@ import click
 from addUserKeys import addUser, addAdmin
 from cameraController import takePicture
 from deviceThing import deviceClientOn
-from initializeClient import setup
 from sysVariable import COLLECTION_CREATED
+from setup import setup
 
 @click.group()
 def cli():
@@ -41,8 +41,7 @@ def main():
 
 
     # Only meant to be ran once, it is the setup for the 
-    # rekognition services. Accepts a string that 
-    # represents the id for collection face
+    # rekognition services. Accepts args
     cli.add_command(setup)
 
 
