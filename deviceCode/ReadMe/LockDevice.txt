@@ -1,0 +1,36 @@
+LockDevice
+
+The device that is wired up to actuate a deadbolt. Assume that 
+the device is a raspberry pi 4 and that the the device and 
+deadbolt has been wired together.
+
+Software Installation
+
+[1] Run the requirnments.txt using
+    $ pip install -r requirements.txt
+
+[2] In sysVariable.py edit the file paths according to 
+    the instructions in the file. This will allow the program to store, 
+    retrieve, and edit information that will allowd the program to run. 
+    Additionally, you will also need to download the AWS certification
+    files for your thing and add the paths into the sysVariable.py document.
+
+[3] Run the program with 
+    $ python3 lock.py
+
+Hardware Installation [If it ends up working correctly, haven't done this before]
+
+Required Items
+    [1] 12V drawer lock
+    [2] Raspberry Pi 4
+    [3] 3 18650 batteries
+    [4] Battery holder
+    [5] Wiring for pins and connections
+    [6] Relay 12V 
+
+Steps to Set up
+    [1] Female connector on raspberry pi ground
+    [2] Female connector on rasbperry pi GPIO 18
+    [3] Connect to Relay module
+    [4] Connect batteries to relay and to door switch
+    [5] Connect groun from switch
