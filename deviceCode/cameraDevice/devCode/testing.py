@@ -4,6 +4,7 @@ functionality of the program.
 This testing file assumes that a collection has already been defined. IE 
 this program has been initialized via CLI.py
 
+NOTE: Check cloud logs to see the outputs :)
 '''
 
 from sysVariable import IMGPATH, FACE_COLLECTION_ID, DEVICENAME, PATH_TO_USERS

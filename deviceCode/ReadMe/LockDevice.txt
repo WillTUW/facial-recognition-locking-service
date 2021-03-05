@@ -18,7 +18,7 @@ Software Installation
 [3] Run the program with 
     $ python3 lock.py
 
-Hardware Installation [If it ends up working correctly, haven't done this before]
+Hardware Installation
 
 Required Items
     [1] 12V drawer lock
@@ -28,9 +28,22 @@ Required Items
     [5] Wiring for pins and connections
     [6] Relay 12V 
 
-Steps to Set up
+Steps to Set up Lock Circuit
     [1] Female connector on raspberry pi ground
     [2] Female connector on rasbperry pi GPIO 18
     [3] Connect to Relay module
     [4] Connect batteries to relay and to door switch
-    [5] Connect groun from switch
+    [5] Connect ground from switch
+
+
+Testing and Evaluaiton
+
+The testing can be found in testing.py. Running this file will 
+activate the deadbolt and close it after 30 seconds. That is
+the main test. Additionally, a client connection will be made 
+which will echo a result to the cloud to test and ensure it is
+working and publishing / receiving.
+Check the lambda cloud logs in cloudwatch by clicking on your lambda function, 
+navigating to monitor, and view logs in CloudWatch. Click on the latest 
+execution to see what is occruing. This will allow you to see execution
+details such as performance information. 

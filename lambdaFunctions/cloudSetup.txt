@@ -1,0 +1,78 @@
+The cloud set up is a bit more particular than setting 
+up the functionality on the devices. I wasn't able to find
+a way to deploy a project in AWS (package up the necessary 
+parts so that they can be cloned). The setup can be broken 
+down into a few parts:
+
+AWS 
+    [1] Create an AWS account and select a region close to you 
+    that has the option to use Rekognition. Not all regions 
+    allow for Rekognition.
+
+IoT Core:
+    [1] Navigate to AWS IoT
+    [2] Go to onboard devices, get started, and follow the steps.
+        [a] Create a device for both lockDevice and camerDevice.
+    [3] Once you've retrieved your zip file with the thing(s) download 
+        them to their respective locations (pi with camera or pi with lock)
+    [4] Once on the device, go through the setup script and insure the 
+        connection is functioning
+    [5] Add Policies and attatch to cameraDevice thing
+        [a] cameraClientOn: allow for publishing. 
+            [i] This will allow the device to publish a connection message
+        [b] addUser: publishing from device
+            [i] Allow for the addition of users from the device
+        [c] faceToCompare: publishing from device
+            [i] Send face and JSON to cloud
+        [d] createFaceCollection: publishing from device
+            [i] create face collections from device
+    [6] Add Policies and attatch to lockDevice thing
+        [a] doorUnlock: allow for sub
+            [i] this will allow the device to monitor for unlock commands
+        [b] cameraClientOn: allow for pub
+            [i] shared method, only used in tests. 
+    [7] Rules for functionality
+        [a] addUserFromDevice Triggers lambda function userToS3Collection.py
+        [b] verifyKeyFace triggers lambda checkIfFaceKey.py
+        [c] initFaceCollection triggers lambda createFaceCollection.py
+        [d] sendTextToAdmin triggers lambda textAdmin.py
+
+Lambda: 
+    These steps must be done with each lambda function
+
+    [1] Navigate to AWS Lambda
+    [2] Create function
+    [3] Select a function name (use the python names in this file)
+    [4] Select Python 3.8
+    [5] Create function
+    [6] All functions will require AWS IoT to be set as the trigger
+    [7] Each lambda function will require custom configuration for 
+        role. To get to this section, on the function, click configuration
+        awnd click the execution role section, this will take you to IAM 
+        for setup.
+        [a] createFaceCollection.py: Attatch policy AmazonS3FullAccess,
+        AmazonRekognitionFullAccess.
+        [b] userToS3Collection.py: Attatch policy AmazonS3FullAcces
+        and Amazon AmazonRekognitionFullAccess'
+        [c] textAdmin.py: Attacth Policy Amazon SNS
+        [d] checkIfFaceKey.py: Attatch Policies AWS IoT, Amazon Rekognition
+        AmazonS3FullAcces
+
+S3:
+    [1] Navigate to S3 in the AWS console
+    [2] Create Bucket
+    [3] Give name and reasign all bucket mentions in lambdas to match. 
+        There isn't a way to quick swap them, so this value must be
+        hardcoded. 
+
+Testing the Functions: 
+    Each lambda function can be individually tested by navigating 
+    to lambda and configuring a test. 
+    [1] Navigate to lambda functions
+    [2] Navigate to monitor
+    [3] Navigate to View Logs In CloudWatch
+    [4] Click the latest log to see if the execution was successful. 
+        [If there aren't any errors, it was successful]
+    [5] These logs will also allow you to see the performance of the 
+    lambda function (exe time, space, etc).
+

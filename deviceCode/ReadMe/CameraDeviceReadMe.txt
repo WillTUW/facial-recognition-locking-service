@@ -33,3 +33,20 @@ Installation
 
 [7] If you need help with cli.py just run
     $ python3 cli.py --help
+
+Testing and Evaluaiton
+
+In testing.py, there are several tests with documentation to run it. 
+This file does require some editing of components due to the nature
+of the kind of work done in the program (IE Takes a picture, so camera
+needs to be commented out and file paths assigned for images)
+
+The results of the test indicate if the device successfully connected
+to the IoT core and will show a black box approach of the cloud functinoality
+IE if the lockDevice is running, the commands will function and you will 
+see the lock operate accordingly. 
+
+Check the lambda cloud logs in cloudwatch by clicking on your lambda function, 
+navigating to monitor, and view logs in CloudWatch. Click on the latest 
+execution to see what is occruing. This will allow you to see execution
+details such as performance information. 

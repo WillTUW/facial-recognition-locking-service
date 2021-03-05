@@ -55,6 +55,7 @@ def checkFaceKey(event, context):
                 # publish to the doorUnlock policy for the SMS message and 
                 # deadbolt device to unlock. 
                 # QOS of 1 because we need this to go through
+                IoTClient.publish(topic='Unlock', qos=1, payload=json.dumps(message))
                 IoTClient.publish(topic='doorUnlock', qos=1, payload=json.dumps(message))
     
     
