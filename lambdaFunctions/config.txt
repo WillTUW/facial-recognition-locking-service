@@ -1,0 +1,21 @@
+The following project includes the code to create a facial recognition
+locking service. The code can be broken up into 3 parts
+
+[1] cameraDevice: This is everything that is to be run on the camera device.
+It includes its own readMe for setup, and offers the functionality of the 
+camera IoT device in the IoT enables facial recognition lock.
+[2] lockDevice: All includsive of code to run on the lock device. In its current
+state it supports a deadbolt, but can be easily modified to work with any
+other lock. It too has its own readMe that will go over hardware configuration
+and software.
+[3] lambdaFunctions: All of the lambda functions that need to be run in the cloud.
+The readMe for this module is a bit more intense and requires configuration with 
+and AWS account. Everything can be completed in the AWS console. 
+
+When setting up this project, it is recommended that the cloud side be done first. 
+Which will allow some minor testing and debug during the clients creation. The second
+step would be to create the cameraDevice. Test it. Then move to the next device,
+the lockDevice. The functions can be tested via their own documentation. 
+
+Re-highlighting that the sysVariable needs to be updated to the correct paths, 
+information on doing this can be found in the file. 
